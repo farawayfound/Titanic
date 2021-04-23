@@ -168,13 +168,23 @@ namespace Titanic
             var southampton = from p in passengers
                              where p.Embarked == 'S' && p.Fare > 10
                              select p;
-            Console.WriteLine($"Second Class survival rate: {getSurvivalRate(thirdClass)} percent");
+            Console.WriteLine($"Southampton passengers over 10 punds fare survival rate: {getSurvivalRate(southampton)} percent");
 
             // 12) What was the survival rate of passengers with the word "sink"
             //     in their name? (case insensitive)
 
+            var sink = from p in passengers
+                              where p.Name.Contains("sink") || p.Name.Contains("Sink")
+                              select p;
+            Console.WriteLine($"Passengers with the word 'sink' in their names survival rate: {getSurvivalRate(sink)} percent");
+
             // 13) What was the survival rate of passengers whose ticket number
             //     included the substring "13"?
+
+            var thirteen = from p in passengers
+                       where p.Ticket.Contains("13")
+                       select p;
+            Console.WriteLine($"Passengers with tickets including the number 13 survival rate: {getSurvivalRate(thirteen)} percent");
 
         } // end Main( )
 
